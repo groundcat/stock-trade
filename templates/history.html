@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <table class="table">
+        <tr>
+            <th>Transaction ID</th>
+            <th>Time</th>
+            <th>Symbol</th>
+            <th># of Shares</th>
+            <th>Price</th>
+            <th>Transaction Type</th>
+        </tr>
+        {% for history_entry in history_entries %}
+        <tr>
+            <td>{{ history_entry.transaction_id }}</td>
+            <td>{{ history_entry.timestamp }}</td>
+            <td>{{ history_entry.symbol }}</td>
+            <td>{{ history_entry.shares }}</td>
+            <td>{{ history_entry.price | usd }}</td>
+            <td>{{ history_entry.transaction_type }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

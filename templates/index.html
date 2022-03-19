@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote lookup
+{% endblock %}
+
+{% block main %}
+    <table class="table">
+        <thead>
+            <th>Symbol</th>
+            <th>Company Name</th>
+            <th># of Shares</th>
+            <th>Spot Price</th>
+            <th>Total Fair Value</th>
+        </thead>
+        <tbody>
+            {% for holding in holdings %}
+            <tr>
+            <td>{{holding.symbol}}</td>
+            <td>{{holding.name}}</td>
+            <td>{{holding.shares}}</td>
+            <td>{{holding.price | usd}}</td>
+            <td>{{holding.total | usd}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="border-0 fw-bold text-end" colspan="4">TOTAL Cash</td>
+                <td class="border-0 text-end">{{total_cash | usd}}</td>
+            </tr>
+            <tr>
+                <td class="border-0 fw-bold text-end" colspan="4">TOTAL Holdings Fair Value</td>
+                <td class="border-0 w-bold text-end">{{total_fv | usd}}</td>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock %}
